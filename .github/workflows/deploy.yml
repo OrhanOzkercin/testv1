@@ -17,6 +17,7 @@ jobs:
           username: root
           key: ${{ secrets.SSH_KEY }}
           script: |
+            set -e
             export NVM_DIR="$HOME/.nvm"
             source $NVM_DIR/nvm.sh
             export PATH=$NVM_DIR/versions/node/v22.17.0/bin:$PATH
@@ -24,4 +25,5 @@ jobs:
             git pull origin main
             npm install
             npm run build
+            ls -la .next
             pm2 startOrReload ecosystem.config.js --update-env
