@@ -1,14 +1,13 @@
 module.exports = {
   apps: [
     {
-      name: "testv1", // PM2 process adı
-      script: "npm", // "npm start" çalıştır
+      name: "testv1",
+      script: "node_modules/next/dist/bin/next",
       args: "start",
-      interpreter: "/bin/bash", // nvm ortamı için bash shell
+      interpreter: "/root/.nvm/versions/node/v22.17.0/bin/node",
       env: {
-        NVM_DIR: "/root/.nvm", // nvm ortamı tanımlanıyor
-        PATH: "/root/.nvm/versions/node/v22.17.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
         NODE_ENV: "production",
+        PATH: "/root/.nvm/versions/node/v22.17.0/bin:" + process.env.PATH,
       },
     },
   ],
