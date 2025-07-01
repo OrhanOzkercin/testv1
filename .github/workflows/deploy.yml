@@ -1,0 +1,24 @@
+name: Deploy to İlkbyte Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: connect pull deploy
+        uses: appleboy/ssh-action@v0.1.8
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: root
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /root/testv1
+            git pull origin main
+            npm install
+            npm run build
+            pm2 restart testv1 || pm2 start npm --name "testv1" -- start
