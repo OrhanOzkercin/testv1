@@ -17,6 +17,9 @@ jobs:
           username: root
           key: ${{ secrets.SSH_KEY }}
           script: |
+            export NVM_DIR="$HOME/.nvm"
+            source $NVM_DIR/nvm.sh
+            export PATH=$NVM_DIR/versions/node/v22.17.0/bin:$PATH
             cd /root/testv1
             git pull origin main
             npm install
