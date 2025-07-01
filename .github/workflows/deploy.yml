@@ -24,4 +24,4 @@ jobs:
             git pull origin main
             npm install
             npm run build
-            pm2 restart testv1 || pm2 start npm --name "testv1" -- start
+            pm2 start ecosystem.config.js --update-env
